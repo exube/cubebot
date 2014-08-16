@@ -8,8 +8,8 @@ typedef struct  {
   char* hostname;
   char* ircname;
 
-  int port;
-  int localport;
+  long port;
+  long localport;
 } user;
 
 extern void newuser(user*);
