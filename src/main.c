@@ -29,15 +29,7 @@ long main(long argc, char** argv) {
     exit(0);
   }
 
-  long sockfd, portno, n;
-  struct sockaddr_in serv_addr;
-  struct hostent* server;
-
-  char buffer[256];
-
-  portno = atoi(argv[2]);
-  
-  // Initialize the socket, or something
+  // Initialize the connection struct, or something
   sockfd = socket(AF_INET, SOCK_STREAM, 0);
   if (sockfd < 0) {
     error("error opening socket");
@@ -61,7 +53,7 @@ long main(long argc, char** argv) {
   
   user* test = (user*)malloc( 5 * sizeof( user ) );
   newuser(&test[0]);
-  strcpy( test[0].nick, "ecube" );
+  strcpy(test[0].nick, "ecube");
   printf( "Hello world! %s\n", test[0].nick );
   deluser(&test[0]);
   free( test );
