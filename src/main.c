@@ -8,6 +8,7 @@
 #include <netdb.h>
 
 #include "user.h"
+#include "macros.h"
 
 long validint(const char* str);
 
@@ -19,7 +20,7 @@ void error(const char* msg) {
 
 
 long main(long argc, char** argv) {
-
+  int i; // Index
   if (argc < 3) {
     fprintf(stderr, "usage: %s <hostname> <port>", argv[0]);
     exit(0);
@@ -28,7 +29,14 @@ long main(long argc, char** argv) {
     fprintf(stderr, "usage: %s <hostname> <port>", argv[0]);
     exit(0);
   }
+  // New user
 
+  user* clients = (user*)malloc(MAXCLIENTS*sizeof(user));
+
+  // Initialize the dynamic block of memory
+  for (i=0; i<MAXCLIENTS; i++ ) {
+    newuser(&clients[i]);
+  }
   // Initialize the connection struct, or something
   sockfd = socket(AF_INET, SOCK_STREAM, 0);
   if (sockfd < 0) {
@@ -57,6 +65,7 @@ long main(long argc, char** argv) {
   printf( "Hello world! %s\n", test[0].nick );
   deluser(&test[0]);
   free( test );
+  free(clients);
   return 0;
 }
 

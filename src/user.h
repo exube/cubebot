@@ -19,6 +19,7 @@ typedef struct  {
 
 extern void newuser(user*);
 extern void deluser(user*);
+extern void connectuser(user*);
 
 
 #endif // USER_H

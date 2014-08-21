@@ -2,7 +2,8 @@
 #include <stdlib.h>
 #include "user.h"
 
-void newuser(user* obj, long portno,  ) {
+// Allocate and zero dynamic memory
+void newuser(user* obj) {
   obj->nick = (char*)malloc(16*sizeof(char));
   obj->ident = (char*)malloc(16*sizeof(char));
   obj->hostname = (char*)malloc(32*sizeof(char));
@@ -13,12 +14,13 @@ void newuser(user* obj, long portno,  ) {
   memset(hostname,0,32);
   memset(ircname,0,32);
 
-  obj->
 }
-
+// Deallocate dynamic memory
 void deluser(user* obj) {
   free(obj->nick);
   free(obj->ident);
   free(obj->hostname);
   free(obj->ircname);
 }
+
+void connectuser(user*);
