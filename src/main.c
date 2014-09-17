@@ -1,14 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <netdb.h>
-
-#include "user.h"
-#include "macros.h"
+#include "main.h"
 
 long validint(const char* str);
 
@@ -38,7 +28,7 @@ long main(long argc, char** argv) {
     newuser(&clients[i]);
   }
   // Initialize the connection struct, or something
-  sockfd = socket(AF_INET, SOCK_STREAM, 0);
+  // sockfd = socket(AF_INET, SOCK_STREAM, 0);
   if (sockfd < 0) {
     error("error opening socket");
   }

@@ -12,7 +12,7 @@ typedef struct  {
   
   char* nick;
   char* ident;
-  char* hostname;
+  char* host;
   char* ircname;
 
 } user;

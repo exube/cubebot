@@ -1,7 +1,5 @@
 
-#include <stdlib.h>
-#include "user.h"
-
+#include "main.h"
 // Allocate and zero dynamic memory
 void newuser(user* obj) {
   obj->nick = (char*)malloc(16*sizeof(char));
@@ -23,4 +21,7 @@ void deluser(user* obj) {
   free(obj->ircname);
 }
 
-void connectuser(user*);
+void connectuser(user* cl) {
+  cl->sockfd = socket(AF_INET, SOCK_STREAM, 0);
+  server = gethostbyname(cl->host);
+  
