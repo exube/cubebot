@@ -1,4 +1,4 @@
-CC=gcc
+CC=g++
 CARGS=
 LARGS=
 OUT=cubebot
@@ -6,13 +6,13 @@ LIBS=
 OBJFILES=main.o user.o
 
 all: main user
-	gcc ${CARGS} ${LIBS} -o ${OUT} ${OBJFILES}
+	${CC} ${CARGS} ${LIBS} -o ${OUT} ${OBJFILES}
 
 main: 
-	gcc ${LARGS} -c main.c
+	${CC} ${LARGS} -c main.cpp
 
 user:
-	gcc ${LARGS} -c user.c 
+	${CC} ${LARGS} -c user.cpp 
 
 clean:
 	rm -rf ${OBJFILES} ${OUT}
