@@ -1,5 +1,17 @@
+#include "macros.h"
 #include "main.h"
 
+#if defined(PLATFORM_LINUX)
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <netdb.h>
+
+#include <sys/select.h>
+#elif defined(PLATFORM_WINDOWS)
+#include <WinSock2.h>
+#endif
 long validint(const char* str);
 
 void error(const char* msg) {
