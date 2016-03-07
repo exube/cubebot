@@ -1,6 +1,10 @@
 #include "macros.h"
 #include "main.h"
 
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+
 #if defined(PLATFORM_LINUX)
 #include <unistd.h>
 #include <sys/types.h>
@@ -12,6 +16,8 @@
 #elif defined(PLATFORM_WINDOWS)
 #include <WinSock2.h>
 #endif
+
+using namespace std;
 long validint(const char* str);
 
 void error(const char* msg) {
@@ -21,7 +27,7 @@ void error(const char* msg) {
 
 
 
-long main(long argc, char** argv) {
+int main(int argc, char** argv) {
   int i; // Index
   if (argc < 3) {
     fprintf(stderr, "usage: %s <hostname> <port>", argv[0]);
@@ -40,12 +46,12 @@ long main(long argc, char** argv) {
     newuser(&clients[i]);
   }
   // Initialize the connection struct, or something
-  // sockfd = socket(AF_INET, SOCK_STREAM, 0);
+  int sockfd = socket(AF_INET, SOCK_STREAM, 0);
   if (sockfd < 0) {
     error("error opening socket");
   }
 
-  server = gethostbyname(argv[1]);
+  void* server = gethostbyname(argv[1]);
   if (server == NULL) {
     error("error: no such host");
   }
@@ -71,7 +77,7 @@ long main(long argc, char** argv) {
   return 0;
 }
 
-long validint(const char* str) {
+int validint(const char* str) {
   char* endptr;
   strtol(str, &endptr, 0);
   if (*str != 0 && *endptr == 0) {
